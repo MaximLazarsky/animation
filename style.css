@@ -1,0 +1,196 @@
+/* main styles */
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+section {
+  width: 600px;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* styles for custom checkbox */
+
+input {
+  display: none;
+}
+
+label {
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 50px;
+  border: 1px solid rgb(75, 75, 255);
+  background: rgb(156, 156, 255);
+  border-radius: 3px;
+}
+
+label::before,
+label::after {
+  position: absolute;
+  content: "";
+  display: none;
+  background: rgb(75, 75, 255);
+}
+
+label::before {
+  width: 20px;
+  height: 5px;
+  transform: rotate(50deg);
+  top: 30px;
+  left: 5px;
+}
+
+label::after {
+  width: 35px;
+  height: 5px;
+  transform: rotate(-45deg);
+  top: 25px;
+  left: 14px;
+}
+
+/* styles for text */
+
+.text {
+  width: 20%;
+}
+
+p {
+  position: absolute;
+}
+
+.text p:last-child {
+  display: none;
+}
+
+/* styles for preloader*/
+
+.preloader {
+  width: 250px;
+  height: 250px;
+  background: grey;
+  border: 1px solid black;
+  border-radius: 5px;
+  position: relative;
+}
+
+.first-gear,
+.second-gear {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 30px solid rgb(44, 28, 28);
+  box-sizing: border-box;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.first-gear {
+  top: 30px;
+  left: 30px;
+}
+
+.second-gear {
+  bottom: 30px;
+  right: 30px;
+}
+
+.gear-element-one,
+.gear-element-two,
+.gear-element-one::before,
+.gear-element-one::after,
+.gear-element-two::before,
+.gear-element-two::after {
+  position: absolute;
+  height: 20px;
+  width: 25px;
+  background: rgb(44, 28, 28);
+}
+
+.gear-element-one {
+  top: -47px;
+  left: 7px;
+}
+
+.gear-element-one::before {
+  content: "";
+  top: 27px;
+  left: 49px;
+  transform: rotate(60deg);
+}
+
+.gear-element-one::after {
+  content: "";
+  top: 27px;
+  left: -48px;
+  transform: rotate(-60deg);
+}
+
+.gear-element-two {
+  top: 67px;
+  left: 7px;
+}
+
+.gear-element-two::before {
+  content: "";
+  top: -27px;
+  left: 49px;
+  transform: rotate(120deg);
+}
+
+.gear-element-two::after {
+  content: "";
+  top: -27px;
+  left: -48px;
+  transform: rotate(-120deg);
+}
+
+/* checkbox function */
+
+#radio:checked + label::before,
+#radio:checked + label::after {
+  display: block;
+}
+
+#radio:checked ~ .text p:last-child {
+  display: block;
+}
+
+#radio:checked ~ .text p:first-child {
+  display: none;
+}
+
+#radio:checked ~ .preloader .first-gear {
+  animation-name: first-gear-rotate;
+}
+
+#radio:checked ~ .preloader .second-gear {
+  animation-name: second-gear-rotate;
+}
+
+/* Animation */
+
+@keyframes first-gear-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes second-gear-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
